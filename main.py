@@ -65,9 +65,15 @@ def build_skills():
     pdf.set_font("nunito-light", "", 9)
     pdf.set_text_color(44,50,54)
     for l in lang_skills:
-        pdf.cell(50, 5, l[0] + " - " + str(l[1]) + "%", ln=True)
+        pdf.cell(20, 5, l[0], ln=False)
+        pdf.cell(20, 5, "", ln=True)
+        pdf.set_fill_color(0,109,119)
+        pdf.rect(38, pdf.get_y() - 3, (20*l[1])/100, 1, "F")
     for c in comp_skills:
-        pdf.cell(50, 5, c[0] + " - " + str(c[1]) + "%", ln=True)
+        pdf.cell(20, 5, c[0], ln=False)
+        pdf.cell(20, 5, "", ln=True)
+        pdf.set_fill_color(0,109,119)
+        pdf.rect(38, pdf.get_y() - 3, (20*c[1])/100, 1, "F")
 
 
 def build_contacts():
