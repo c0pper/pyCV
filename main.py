@@ -4,7 +4,7 @@ import urllib
 url = 'https://raw.githubusercontent.com/c0pper/bs-simple-personal-website/master/resume.py'
 urllib.request.urlretrieve (url, "resume.py")
 
-from resume import ed_experiences, w_experiences
+from resume import ed_experiences, w_experiences, certifications
 from sidebar import *
 
 class PDF(FPDF):
@@ -22,6 +22,7 @@ pdf.add_font(family="nunito-light", fname= 'Nunito-Light.ttf', uni = True)
 pdf.add_font(family="montserrat", fname= 'Montserrat-Medium.ttf', uni = True)
 
 sidebar_v_spacing = 6
+default_cell_height = 4.5
 
 
 def print_main_separator(height):
@@ -40,7 +41,7 @@ def build_bio():
     pdf.image("foto.png", 10, 30, 40)
     pdf.set_font("nunito-light", "", 9)
     pdf.set_text_color(44,50,54)
-    pdf.set_xy(10, 85)
+    pdf.set_xy(10, 75)
     pdf.multi_cell(50, 5, short_bio, align="center")
 
 
@@ -90,6 +91,7 @@ def build_contacts():
 
 
 def build_references():
+    pdf.set_xy(10, 10)
     pdf.cell(50, sidebar_v_spacing, "", ln=True)
     pdf.set_font("montserrat", "", 9)
     pdf.set_text_color(0,109,119)
@@ -121,6 +123,7 @@ def build_exp_title(title):
 
 
 def build_w_exp():
+    pdf.set_y(85)
     build_exp_title("Work Experience")
 
     #entries
@@ -129,23 +132,17 @@ def build_w_exp():
         pdf.set_x(75)
         pdf.cell(pdf.exp_entry_title_w, 5, "", ln=True)
         pdf.set_x(75)
-        pdf.cell(pdf.exp_entry_title_w, 5, e["name"], ln=True)
+        pdf.cell(pdf.exp_entry_title_w, default_cell_height, e["name"], ln=True)
         pdf.set_x(75)
-        pdf.cell(pdf.exp_entry_title_w, 5, e["date"] + " | " + e["institution"] + e["location"], ln=True, link=e["url"])
+        pdf.cell(pdf.exp_entry_title_w, default_cell_height, e["date"] + " | " + e["institution"] + e["location"], ln=True, link=e["url"])
         for p in e["points"]:
             pdf.set_x(80)
-            pdf.multi_cell(pdf.exp_entry_title_w, 5, "• " + p)
+            pdf.multi_cell(pdf.exp_entry_title_w, default_cell_height, "• " + p)
     global CURRENT_Y
     CURRENT_Y = pdf.get_y()
-    print(f"y after w exp = {CURRENT_Y}")
 
 
 def build_e_exp():
-    print(f"y before e exp = {CURRENT_Y}")
-    pdf.set_y(CURRENT_Y)
-    pdf.cell(pdf.exp_entry_title_w, 10, "", ln=True)
-    print_main_separator(pdf.get_y())
-    pdf.cell(pdf.exp_entry_title_w, 10, "", ln=True)
     build_exp_title("Education")
 
     pdf.set_text_color(44,50,54)
@@ -153,22 +150,45 @@ def build_e_exp():
         pdf.set_x(75)
         pdf.cell(pdf.exp_entry_title_w, 5, "", ln=True)
         pdf.set_x(75)
-        pdf.cell(pdf.exp_entry_title_w, 5, e["name"], ln=True)
+        pdf.cell(pdf.exp_entry_title_w, default_cell_height, e["name"], ln=True)
         pdf.set_x(75)
-        pdf.cell(pdf.exp_entry_title_w, 5, e["date"], ln=True)
+        pdf.cell(pdf.exp_entry_title_w, default_cell_height, e["date"], ln=True)
         pdf.set_x(75)
-        pdf.cell(pdf.exp_entry_title_w, 5, e["institution"] + e["location"], ln=True, link=e["url"])
+        pdf.cell(pdf.exp_entry_title_w, default_cell_height, e["institution"] + e["location"], ln=True, link=e["url"])
         for p in e["points"]:
             pdf.set_x(80)
-            pdf.multi_cell(pdf.exp_entry_title_w, 5, "• " + p)
+            pdf.multi_cell(pdf.exp_entry_title_w, default_cell_height, "• " + p)
+    global CURRENT_Y
+    CURRENT_Y = pdf.get_y()
+
+
+def build_certifications():
+    build_exp_title("Certifications")
+
+    pdf.set_text_color(44,50,54)
+    for c in certifications:
+        pdf.set_x(75)
+        pdf.cell(pdf.exp_entry_title_w, 5, "", ln=True)
+        pdf.set_x(75)
+        pdf.set_font("nunito-light")
+        pdf.cell(5, 1, "• ")
+        pdf.set_font("nunito-light", style="U")
+        pdf.cell(pdf.exp_entry_title_w, 1, c["title"], ln=True, link=c["url"])
 
 
 def print_experiences():
-    pdf.set_y(85)
     build_w_exp()
-    pdf.set_xy(10, 10)
     build_references()
+    pdf.set_y(CURRENT_Y)
+    pdf.cell(pdf.exp_entry_title_w, 5, "", ln=True)
+    print_main_separator(pdf.get_y())
+    pdf.cell(pdf.exp_entry_title_w, 5, "", ln=True)
     build_e_exp()
+    pdf.set_y(CURRENT_Y)
+    pdf.cell(pdf.exp_entry_title_w, 5, "", ln=True)
+    print_main_separator(pdf.get_y())
+    pdf.cell(pdf.exp_entry_title_w, 5, "", ln=True)
+    build_certifications()
 
 
 def print_sidebar():
@@ -177,22 +197,19 @@ def print_sidebar():
     build_skills()
     build_contacts()
 
-# needs indexed colors img
-# def make_circular_profile_pic(pic):
-    pass
 
 def main():
     pdf.add_page()
-    pdf.set_auto_page_break(True, margin=40)
+    pdf.set_auto_page_break(True, margin=20)
     pdf.image("top.png", 0, 0, pdf.pdf_w)
 
     print_name()
     print_sidebar()
     print_experiences()
 
-    pdf.image("bottom.png", 0, 222, pdf.pdf_w)
+    pdf.image("bottom.png", 0, 242, pdf.pdf_w)
 
-    pdf.output('test.pdf','F')
+    pdf.output('CV Simone Martin Marotta.pdf','F')
 
 
 if __name__ == "__main__":
