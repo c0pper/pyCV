@@ -19,11 +19,11 @@ ed_experiences = [
         "location": ", Naples (IT)",
         "points": [
             "First place in admission list",
-            "Developement of publishable app in 1 month (Swift)",
-            "Demo of the product at European Researchers' Night '19, national science fair 'Futuro Remoto' and Universirty of Westminster (London)",
+            "Development of publishable app in 1 month (Swift)",
+            "Demo of the product at European Researchers' Night '19, national science fair 'Futuro Remoto' and University of Westminster (London)",
             "Honing of soft / hard skills and team working"
         ],
-        "url": "https://www.unior.it/" 
+        "url": "https://www.unior.it/"
     },
     {
         "name": "FIT - INITIAL FORMATION AND TRAINEESHIP FOR TEACHERS",
@@ -31,7 +31,7 @@ ed_experiences = [
         "institution": "Università degli Studi di Naples L'Orientale",
         "location": ", Naples (IT)",
         "points": [
-            "Antropology",
+            "Anthropology",
             "Pedagogy",
             "Teaching to migrants",
             "Teaching to people with special needs"
@@ -63,7 +63,8 @@ w_experiences = [
             "Identification of logical patterns underlying the language",
             "Improvement of the basic technology from a linguistic point of view",
             "Tests and validations to verify the effectiveness of the implemented solution",
-            "Identification of suitable solutions for clients in the field of Natural Language Processing"
+            "Identification of suitable solutions for clients in the field of Natural Language Processing",
+            "App mockup design and creation"
         ],
         "url": "https://www.expert.ai/"
     },

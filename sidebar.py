@@ -16,8 +16,8 @@ hobbies = [
 
 contacts = {
     "phone": "+39 339 4344414",
-    "mail: ": "martin.s.marotta@gmail.com",
-    "web: ": "martinmarotta.com"
+    "mail": "martin.s.marotta@gmail.com",
+    "web": "martinmarotta.com"
 }
 
 references = [
