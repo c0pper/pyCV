@@ -1,15 +1,11 @@
 from fpdf import FPDF
-import urllib
-import requests
 from resume import ed_experiences, w_experiences, certifications
 from sidebar import *
+from utils import download_file
 
-url = 'https://raw.githubusercontent.com/c0pper/bs-simple-personal-website/master/resume.py'
-# urllib.request.urlretrieve(url, "resume.py")
-resp = requests.get(url) # making requests to server
+resume_url = 'https://raw.githubusercontent.com/c0pper/bs-simple-personal-website/master/resume.py'
+download_file(resume_url, "resume.py")
 
-with open("resume.py", "wb") as f: # opening a file handler to create new file
-    f.write(resp.content) # writing content to file
 
 class PDF(FPDF):
     pdf_w = 210
