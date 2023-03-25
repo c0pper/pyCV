@@ -1,9 +1,11 @@
 from fpdf import FPDF
-import requests
 from resume import ed_experiences, w_experiences, certifications
 from sidebar import *
+from utils import download_file
 
 resume_url = 'https://raw.githubusercontent.com/c0pper/bs-simple-personal-website/master/resume.py'
+download_file(resume_url, "resume.py")
+
 
 class PDF(FPDF):
     pdf_w = 210
@@ -22,12 +24,6 @@ pdf.add_font(family="montserrat", fname='Montserrat-Medium.ttf', uni=True)
 
 sidebar_v_spacing = 6
 default_cell_height = 4.5
-
-
-def download_file(url, filename):
-    resp = requests.get(url) # making requests to server
-    with open(filename, "wb") as f: # opening a file handler to create new file
-        f.write(resp.content) # writing content to file
 
 
 def print_main_separator(height):
