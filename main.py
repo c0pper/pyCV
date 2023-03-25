@@ -1,46 +1,52 @@
 from fpdf import FPDF
 import urllib
-
-url = 'https://raw.githubusercontent.com/c0pper/bs-simple-personal-website/master/resume.py'
-urllib.request.urlretrieve (url, "resume.py")
-
+import requests
 from resume import ed_experiences, w_experiences, certifications
 from sidebar import *
 
+url = 'https://raw.githubusercontent.com/c0pper/bs-simple-personal-website/master/resume.py'
+# urllib.request.urlretrieve(url, "resume.py")
+resp = requests.get(url) # making requests to server
+
+with open("resume.py", "wb") as f: # opening a file handler to create new file
+    f.write(resp.content) # writing content to file
+
 class PDF(FPDF):
-    pdf_w=210
-    pdf_h=297
+    pdf_w = 210
+    pdf_h = 297
     exp_entry_title_w = 100
 
     def header(self):
         # sidebar
-        self.set_fill_color(223,224,224)
+        self.set_fill_color(223, 224, 224)
         self.rect(0, 0, 65, self.pdf_h, style="F")
 
+
 pdf = PDF(orientation='P', unit='mm', format='A4')
-pdf.add_font(family="nunito-light", fname= 'Nunito-Light.ttf', uni = True)
-pdf.add_font(family="montserrat", fname= 'Montserrat-Medium.ttf', uni = True)
+pdf.add_font(family="nunito-light", fname='Nunito-Light.ttf', uni=True)
+pdf.add_font(family="montserrat", fname='Montserrat-Medium.ttf', uni=True)
 
 sidebar_v_spacing = 6
 default_cell_height = 4.5
 
 
 def print_main_separator(height):
-    pdf.set_fill_color(223,224,224)
+    pdf.set_fill_color(223, 224, 224)
     pdf.rect(75, height, pdf.exp_entry_title_w, 1, "F")
 
 
 def print_name():
     pdf.set_xy(75, 55)
     pdf.set_font("montserrat", "", 28)
-    pdf.set_text_color(0,109,119)
+    pdf.set_text_color(0, 109, 119)
     pdf.multi_cell(90, 12, "SIMONE MARTIN MAROTTA")
     print_main_separator(80)
+
 
 def build_bio():
     pdf.image("foto.png", 10, 30, 40)
     pdf.set_font("nunito-light", "", 9)
-    pdf.set_text_color(44,50,54)
+    pdf.set_text_color(44, 50, 54)
     pdf.set_xy(10, 75)
     pdf.multi_cell(50, 5, short_bio, align="center")
 
@@ -48,11 +54,11 @@ def build_bio():
 def build_hobbies():
     pdf.cell(50, sidebar_v_spacing, "", ln=True)
     pdf.set_font("montserrat", "", 9)
-    pdf.set_text_color(0,109,119)
+    pdf.set_text_color(0, 109, 119)
     pdf.cell(50, 5, "HOBBIES", ln=True)
     pdf.cell(50, 3, "", ln=True)
     pdf.set_font("nunito-light", "", 9)
-    pdf.set_text_color(44,50,54)
+    pdf.set_text_color(44, 50, 54)
     for h in hobbies:
         pdf.cell(50, 5, h, ln=True)
 
@@ -60,31 +66,31 @@ def build_hobbies():
 def build_skills():
     pdf.cell(50, sidebar_v_spacing, "", ln=True)
     pdf.set_font("montserrat", "", 9)
-    pdf.set_text_color(0,109,119)
+    pdf.set_text_color(0, 109, 119)
     pdf.cell(50, 5, "SKILLS", ln=True)
     pdf.cell(50, 3, "", ln=True)
     pdf.set_font("nunito-light", "", 9)
-    pdf.set_text_color(44,50,54)
+    pdf.set_text_color(44, 50, 54)
     for l in lang_skills:
         pdf.cell(20, 5, l[0], ln=False)
         pdf.cell(20, 5, "", ln=True)
-        pdf.set_fill_color(0,109,119)
-        pdf.rect(38, pdf.get_y() - 3, (20*l[1])/100, 1, "F")
+        pdf.set_fill_color(0, 109, 119)
+        pdf.rect(38, pdf.get_y() - 3, (20 * l[1]) / 100, 1, "F")
     for c in comp_skills:
         pdf.cell(20, 5, c[0], ln=False)
         pdf.cell(20, 5, "", ln=True)
-        pdf.set_fill_color(0,109,119)
-        pdf.rect(38, pdf.get_y() - 3, (20*c[1])/100, 1, "F")
+        pdf.set_fill_color(0, 109, 119)
+        pdf.rect(38, pdf.get_y() - 3, (20 * c[1]) / 100, 1, "F")
 
 
 def build_contacts():
     pdf.cell(50, sidebar_v_spacing, "", ln=True)
     pdf.set_font("montserrat", "", 9)
-    pdf.set_text_color(0,109,119)
+    pdf.set_text_color(0, 109, 119)
     pdf.cell(50, 5, "CONTACTS", ln=True)
     pdf.cell(50, 3, "", ln=True)
     pdf.set_font("nunito-light", "", 9)
-    pdf.set_text_color(44,50,54)
+    pdf.set_text_color(44, 50, 54)
     pdf.cell(50, 5, f"PHONE {contacts['phone']}", ln=True)
     pdf.cell(50, 5, f"MAIL {contacts['mail']}", ln=True)
     pdf.cell(50, 5, f"WEB {contacts['web']}", ln=True)
@@ -94,11 +100,11 @@ def build_references():
     pdf.set_xy(10, 10)
     pdf.cell(50, sidebar_v_spacing, "", ln=True)
     pdf.set_font("montserrat", "", 9)
-    pdf.set_text_color(0,109,119)
+    pdf.set_text_color(0, 109, 119)
     pdf.cell(50, 5, "REFERENCES", ln=True)
     pdf.cell(50, 3, "", ln=True)
     pdf.set_font("nunito-light", "", 9)
-    pdf.set_text_color(44,50,54)
+    pdf.set_text_color(44, 50, 54)
     for r in references:
         pdf.cell(50, 5, r["name"], ln=True)
         pdf.cell(50, 5, r["role"], ln=True)
@@ -107,18 +113,18 @@ def build_references():
         pdf.cell(50, 5, r["phone"], ln=True)
         pdf.cell(50, 5, r["mail"], ln=True)
         pdf.cell(50, 3, "", ln=True)
-        pdf.set_fill_color(0,109,119)
+        pdf.set_fill_color(0, 109, 119)
         pdf.rect(10, pdf.get_y(), 45, 0.2, "F")
         pdf.cell(50, 5, "", ln=True)
 
 
 def build_exp_title(title):
-    #section title
+    # section title
     pdf.set_x(75)
     pdf.set_font("montserrat", "", 13)
-    pdf.set_text_color(0,109,119)
+    pdf.set_text_color(0, 109, 119)
     pdf.cell(pdf.exp_entry_title_w, 5, title, ln=True)
-    #set font for entries
+    # set font for entries
     pdf.set_font("nunito-light", "", 9)
 
 
@@ -126,15 +132,16 @@ def build_w_exp():
     pdf.set_y(85)
     build_exp_title("Work Experience")
 
-    #entries
-    pdf.set_text_color(44,50,54)
+    # entries
+    pdf.set_text_color(44, 50, 54)
     for e in w_experiences:
         pdf.set_x(75)
         pdf.cell(pdf.exp_entry_title_w, 5, "", ln=True)
         pdf.set_x(75)
         pdf.cell(pdf.exp_entry_title_w, default_cell_height, e["name"], ln=True)
         pdf.set_x(75)
-        pdf.cell(pdf.exp_entry_title_w, default_cell_height, e["date"] + " | " + e["institution"] + e["location"], ln=True, link=e["url"])
+        pdf.cell(pdf.exp_entry_title_w, default_cell_height, e["date"] + " | " + e["institution"] + e["location"],
+                 ln=True, link=e["url"])
         for p in e["points"]:
             pdf.set_x(80)
             pdf.multi_cell(pdf.exp_entry_title_w, default_cell_height, "• " + p)
@@ -145,7 +152,7 @@ def build_w_exp():
 def build_e_exp():
     build_exp_title("Education")
 
-    pdf.set_text_color(44,50,54)
+    pdf.set_text_color(44, 50, 54)
     for e in ed_experiences:
         pdf.set_x(75)
         pdf.cell(pdf.exp_entry_title_w, 5, "", ln=True)
@@ -165,7 +172,7 @@ def build_e_exp():
 def build_certifications():
     build_exp_title("Certifications")
 
-    pdf.set_text_color(44,50,54)
+    pdf.set_text_color(44, 50, 54)
     for c in certifications:
         pdf.set_x(75)
         pdf.cell(pdf.exp_entry_title_w, 5, "", ln=True)
@@ -209,9 +216,8 @@ def main():
 
     pdf.image("bottom.png", 0, 242, pdf.pdf_w)
 
-    pdf.output('CV Simone Martin Marotta.pdf','F')
+    pdf.output('CV Simone Martin Marotta.pdf', 'F')
 
 
 if __name__ == "__main__":
     main()
-    
