@@ -3,8 +3,10 @@ from resume import ed_experiences, w_experiences, certifications
 from sidebar import *
 from utils import download_file
 
-resume_url = 'https://raw.githubusercontent.com/c0pper/bs-simple-personal-website/master/resume.py'
-download_file(resume_url, "resume.py")
+# resume_url = 'https://raw.githubusercontent.com/c0pper/bs-simple-personal-website/master/resume.py'
+# download_file(resume_url, "resume.py")
+# db_url = "https://github.com/c0pper/personal_website_django/raw/master/personal_website/db.sqlite3"
+# download_file(db_url, "sqlite_resume.sqlite3")
 
 
 class PDF(FPDF):
@@ -196,7 +198,7 @@ def print_experiences():
 
 def print_sidebar():
     build_bio()
-    build_hobbies()
+    # build_hobbies()
     build_skills()
     build_contacts()
 
