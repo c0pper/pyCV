@@ -60,13 +60,15 @@ w_experiences = [
         "institution": "Expert.AI",
         "location": ", Naples (IT)",
         "points": [
-            "Development of semantic rules that provide the best results in order to meet customer expectations",
             "Identification of logical patterns underlying the language",
-            "Improvement of the basic technology from a linguistic point of view",
-            "Tests and validations to verify the effectiveness of the implemented solution",
-            "Identification of suitable solutions for clients in the field of Natural Language Processing",
+            "Designing, developing, and testing NLP solutions to meet customer needs and requirements",
+            "Ensuring quality of NLP solutions and contributing to their improvement",
+            "Analysis of customer needs and transforming them into technical requirements",
+            "Fine-tuning NLP modules to balance precision and recall according to customer requirements",
+            "Acting as NLP partner to customers using expert.ai technology",
+            "Contribution to closeout phase, collecting lessons learned, and sharing best practices with project team and community members",
             "App mockup design and creation"
-        ],
+            ],
         "url": "https://www.expert.ai/"
     },
     {

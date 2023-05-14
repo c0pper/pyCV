@@ -1,7 +1,7 @@
-short_bio = "I deal with translation, teaching and new technologies.\nI am looking for an environment in which to share my skills and continue to improve myself"
+short_bio = "As an experienced knowledge engineer, I can bring my expertise to your organization in the fields of robotic process automation, Natural Language Understanding, and new technologies in general."
 
 lang_skills = [("English", 100), ("Russian", 70), ("Spanish", 30), ("French", 30), ("Japanese", 20)]
-comp_skills = [("Photoshop", 80), ("HTML", 70), ("Python", 50), ("Wordpress/CMS", 50), ("CSS", 30)]
+comp_skills = [("Photoshop", 80), ("HTML", 80), ("Python", 85), ("ReactJS", 50), ("Javascript", 50), ("Docker", 40), ("Git", 40), ("Databases", 20), ("OWL", 40), ("Bootstrap", 60), ("Django", 40), ("Flask", 50), ("NLP", 80), ("Swift", 25), ("scikit-learn", 70), ("Tensorflow", 50), ("Pytorch", 20), ("Tailwind", 60), ("Wordpress/CMS", 50), ("CSS", 60)]
 
 hobbies = [
     "Languages",
@@ -21,6 +21,14 @@ contacts = {
 }
 
 references = [
+    {
+        "name": "Dr. Vincenzo Masucci",
+        "role": "EU Financed Projects Lead",
+        "institution": "Expert.AI",
+        "location": "Napoli (IT)",
+        "phone": "+39 338 936 1039",
+        "mail": "vmasucci@expert.ai"
+    },
     {
         "name": "Mr. Nathan Price",
         "role": "Centre Manager",
