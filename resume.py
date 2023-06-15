@@ -67,7 +67,7 @@ w_experiences = [
             "Fine-tuning NLP modules to balance precision and recall according to customer requirements",
             "Acting as NLP partner to customers using expert.ai technology",
             "Contribution to closeout phase, collecting lessons learned, and sharing best practices with project team and community members",
-            "App mockup design and creation"
+            "Development of product mockup and demos with ReactJS"
             ],
         "url": "https://www.expert.ai/"
     },
