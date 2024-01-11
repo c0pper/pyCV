@@ -1,7 +1,7 @@
 from fpdf import FPDF
-from resume import ed_experiences, w_experiences, certifications
+from resume import ed_experiences, w_experiences, certifications, publications
 from sidebar import *
-from utils import download_file
+# from utils import download_file
 
 # resume_url = 'https://raw.githubusercontent.com/c0pper/bs-simple-personal-website/master/resume.py'
 # download_file(resume_url, "resume.py")
@@ -69,16 +69,16 @@ def build_skills():
     pdf.cell(50, 3, "", ln=True)
     pdf.set_font("nunito-light", "", 9)
     pdf.set_text_color(44, 50, 54)
-    for l in lang_skills:
-        pdf.cell(20, 5, l[0], ln=False)
-        pdf.cell(20, 5, "", ln=True)
-        pdf.set_fill_color(0, 109, 119)
-        pdf.rect(38, pdf.get_y() - 3, (20 * l[1]) / 100, 1, "F")
     for c in comp_skills:
         pdf.cell(20, 5, c[0], ln=False)
         pdf.cell(20, 5, "", ln=True)
         pdf.set_fill_color(0, 109, 119)
         pdf.rect(38, pdf.get_y() - 3, (20 * c[1]) / 100, 1, "F")
+    for l in lang_skills:
+        pdf.cell(20, 5, l[0], ln=False)
+        pdf.cell(20, 5, "", ln=True)
+        pdf.set_fill_color(0, 109, 119)
+        pdf.rect(38, pdf.get_y() - 3, (20 * l[1]) / 100, 1, "F")
 
 
 def build_contacts():
@@ -179,6 +179,26 @@ def build_certifications():
         pdf.cell(5, 1, "• ")
         pdf.set_font("nunito-light", style="U")
         pdf.cell(pdf.exp_entry_title_w, 1, c["title"], ln=True, link=c["url"])
+    global CURRENT_Y
+    CURRENT_Y = pdf.get_y()
+
+def build_publications():
+    build_exp_title("Publications")
+
+    pdf.set_text_color(44, 50, 54)
+    for c in publications:
+        pdf.set_x(75)
+        pdf.cell(pdf.exp_entry_title_w, 5, "", ln=True)
+        pdf.set_x(75)
+        pdf.set_font("nunito-light")
+        pdf.cell(5, 4, "• ")
+        pdf.set_font("nunito-light")
+        pdf.multi_cell(pdf.exp_entry_title_w, 4, c["title"], )
+        pdf.set_x(85)
+        pdf.set_font("nunito-light", style="U")
+        pdf.cell(pdf.exp_entry_title_w, 2, "Link", ln=1, link=c["url"])
+    global CURRENT_Y
+    CURRENT_Y = pdf.get_y()
 
 
 def print_experiences():
@@ -193,6 +213,8 @@ def print_experiences():
     pdf.cell(pdf.exp_entry_title_w, 5, "", ln=True)
     print_main_separator(pdf.get_y())
     pdf.cell(pdf.exp_entry_title_w, 5, "", ln=True)
+    build_publications()
+    pdf.set_y(CURRENT_Y+10)
     build_certifications()
 
 

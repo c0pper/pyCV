@@ -60,14 +60,15 @@ w_experiences = [
         "institution": "Expert.AI",
         "location": ", Naples (IT)",
         "points": [
-            "Identification of logical patterns underlying the language",
             "Designing, developing, and testing NLP solutions to meet customer needs and requirements",
-            "Ensuring quality of NLP solutions and contributing to their improvement",
+            "Knowledge retrieval chatbots with both proprietary and opensource Large Language Models",
+            "Frontend and backend solution design and implementation",
+            "Building of Semantic Knowledge Graphs to represent, operate and extrapolate knowledge",
             "Analysis of customer needs and transforming them into technical requirements",
+            "Ensuring quality of NLP solutions and contributing to their improvement",
             "Fine-tuning NLP modules to balance precision and recall according to customer requirements",
             "Acting as NLP partner to customers using expert.ai technology",
             "Contribution to closeout phase, collecting lessons learned, and sharing best practices with project team and community members",
-            "App mockup design and creation"
             ],
         "url": "https://www.expert.ai/"
     },
@@ -196,5 +197,13 @@ certifications = [
     {
         "title": "MASTER'S DEGREE",
         "url": "https://drive.google.com/file/d/1Y7WKmsd5AXBpEfEIJhlmf-LF38ISwCsZ/view?usp=sharing"
+    },
+]
+
+
+publications = [
+    {
+        "title": "From Diverse Sources to a Unified Framework: \nConstructing an Operational Ontology for Fire Management",
+        "url": "https://www.researchgate.net/publication/376190533_From_Diverse_Sources_to_a_Unified_Framework_Constructing_an_Operational_Ontology_for_Fire_Management"
     },
 ]
